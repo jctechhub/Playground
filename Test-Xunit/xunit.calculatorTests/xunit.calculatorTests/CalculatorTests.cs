@@ -48,5 +48,17 @@ namespace xunit.calculatorTests
         {
             Assert.False(_calculatorFixture.Calc.Subtract(3, 4) == -10, "Cal subtract result isnot  -10. ");
         }
+
+
+        [Theory]
+        [InlineData(3,4, -1, true)]
+        [InlineData(3, 4, -10, false)]
+        [Trait("CalCategory", "Subtract")]
+        public void test_subtract_generic(int x, int y, int result, bool expected)
+        {
+            var check = _calculatorFixture.Calc.Subtract(x, y) == result;
+            Assert.Equal(check, expected);
+        }
+
     }
 }
