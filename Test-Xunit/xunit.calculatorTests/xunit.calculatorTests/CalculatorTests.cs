@@ -69,5 +69,14 @@ namespace xunit.calculatorTests
             Assert.Equal(check, expected);
         }
 
+        [Theory]
+        [DataCustom]
+        [Trait("CalCategory", "Subtract")]
+        public void test_subtract_generic_using_share_data_in_custom_attribute(int x, int y, int result, bool expected)
+        {
+            var check = _calculatorFixture.Calc.Subtract(x, y) == result;
+            Assert.Equal(check, expected);
+        }
+
     }
 }
