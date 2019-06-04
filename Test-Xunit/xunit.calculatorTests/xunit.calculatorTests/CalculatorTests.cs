@@ -61,7 +61,7 @@ namespace xunit.calculatorTests
         }
 
         [Theory]
-        [MemberData(nameof(TestDataShare.AddOrSubtractData), MemberType = typeof(TestDataShare))]
+        [MemberData(nameof(TestDataShare.AddOrSubtractDataFromTextFile), MemberType = typeof(TestDataShare))]
         [Trait("CalCategory", "Subtract")]
         public void test_subtract_generic_using_share_data(int x, int y, int result, bool expected)
         {
