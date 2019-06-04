@@ -3,22 +3,34 @@ using Xunit;
 
 namespace xunit.calculatorTests
 {
-    public class CalculatorTests
+    public class CalculatorFixture
     {
+        public Calculator Calc => new Calculator();
+
+    }
+
+
+    public class CalculatorTests : IClassFixture<CalculatorFixture>
+    {
+        private CalculatorFixture _calculatorFixture;
+
+        public CalculatorTests(CalculatorFixture calculatorFixture)
+        {
+            _calculatorFixture = calculatorFixture;
+        }
+
         [Fact]
         [Trait("CalCategory", "Add")]
         public void test_add_success()
         {
-            var cal = new Calculator();
-            Assert.True(cal.Add(3, 4) == 7, "Cal Add result is 7. ");
+            Assert.True(_calculatorFixture.Calc.Add(3, 4) == 7, "Cal Add result is 7. ");
         }
 
         [Fact]
         [Trait("CalCategory", "Add")]
         public void test_add_fail()
         {
-            var cal = new Calculator();
-            Assert.False(cal.Add(3, 4) == 10, "Cal Add result isn't 10. ");
+            Assert.False(_calculatorFixture.Calc.Add(3, 4) == 10, "Cal Add result isn't 10. ");
         }
 
 
@@ -27,16 +39,14 @@ namespace xunit.calculatorTests
         [Trait("CalCategory", "Subtract")]
         public void test_subtract_success()
         {
-            var cal = new Calculator();
-            Assert.True(cal.Subtract(3, 4) == -1, "Cal subtract result is -1. ");
+            Assert.True(_calculatorFixture.Calc.Subtract(3, 4) == -1, "Cal subtract result is -1. ");
         }
 
         [Fact]
         [Trait("CalCategory", "Subtract")]
         public void test_subtract_fail()
         {
-            var cal = new Calculator();
-            Assert.False(cal.Subtract(3, 4) == -10, "Cal subtract result isnot  -10. ");
+            Assert.False(_calculatorFixture.Calc.Subtract(3, 4) == -10, "Cal subtract result isnot  -10. ");
         }
     }
 }
