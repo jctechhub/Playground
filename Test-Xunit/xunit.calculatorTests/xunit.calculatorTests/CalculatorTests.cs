@@ -60,5 +60,14 @@ namespace xunit.calculatorTests
             Assert.Equal(check, expected);
         }
 
+        [Theory]
+        [MemberData(nameof(TestDataShare.AddOrSubtractData), MemberType = typeof(TestDataShare))]
+        [Trait("CalCategory", "Subtract")]
+        public void test_subtract_generic_using_share_data(int x, int y, int result, bool expected)
+        {
+            var check = _calculatorFixture.Calc.Subtract(x, y) == result;
+            Assert.Equal(check, expected);
+        }
+
     }
 }
