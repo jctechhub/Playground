@@ -6,6 +6,12 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            // args => expression
+            //()...
+            //x=>...
+            //(x, y, z)=>...
+
+
             //sample func method
             Func<int, int> Square = number => number * number;
             Console.WriteLine(Square(5));
