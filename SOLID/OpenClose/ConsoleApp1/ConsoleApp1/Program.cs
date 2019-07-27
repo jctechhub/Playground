@@ -15,18 +15,64 @@ namespace ConsoleApp1
 
             Product[] products = {apple, tree, house};
 
+            //---- Bad way: 
             var pf = new ProductFilter();
             Console.WriteLine("Green products (OLD):");
             foreach (var p in pf.FilterByColor(products, Color.Green))
             {
                 Console.WriteLine($" - {p.Name} is green");
             }
-            Console.WriteLine("Hello World!");
+            //-----
+
+            //---- Better way: use Specification pattern 
+            var bf = new ProductFilterNew();
+            Console.WriteLine("Green products (NEW):");
+            foreach (var product in bf.Filter(products, new ColorSpecification(Color.Green)))
+            {
+                Console.WriteLine($" - {product.Name} is green.");
+            }
+            //-----
         }
-
-
     }
 
+    //---- Better way: use Specification pattern 
+    public interface ISpecification<T>
+    {
+        bool IsSatisfied(T t);
+    }
+
+    public interface IFilter<T>
+    {
+        IEnumerable<T> Filter(IEnumerable<T> items, ISpecification<T> spec);
+    }
+
+    public class ColorSpecification : ISpecification<Product>
+    {
+        private Color _color;
+
+        public ColorSpecification(Color color)
+        {
+            _color = color;
+        }
+        public bool IsSatisfied(Product t)
+        {
+            return t.Color == _color;
+        }
+    }
+    //---- 
+
+
+    public class ProductFilterNew : IFilter<Product>
+    {
+        public IEnumerable<Product> Filter(IEnumerable<Product> items, ISpecification<Product> spec)
+        {
+            foreach (var item in items)
+            {
+                if (spec.IsSatisfied(item))
+                    yield return item;
+            }
+        }
+    }
 
 
     public class ProductFilter
