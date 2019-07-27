@@ -31,6 +31,13 @@ namespace ConsoleApp1
             {
                 Console.WriteLine($" - {product.Name} is green.");
             }
+
+            var combinedSpec = new AndSpecification<Product>(new ColorSpecification(Color.Green), new SizeSpecification(Size.Large) );
+            Console.WriteLine("Green and Large product: ");
+            foreach (var p in bf.Filter(products, combinedSpec))
+            {
+                Console.WriteLine($" - {p.Name} is Green and Large");
+            }
             //-----
         }
     }
@@ -59,8 +66,40 @@ namespace ConsoleApp1
             return t.Color == _color;
         }
     }
-    //---- 
 
+    public class SizeSpecification : ISpecification<Product>
+    {
+        private Size _size;
+
+        public SizeSpecification(Size size)
+        {
+            _size = size;
+        }
+        public bool IsSatisfied(Product t)
+        {
+            return t.Size == _size;
+        }
+    }
+
+
+    /// <summary>
+    /// This the combined spec class. 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class AndSpecification<T> : ISpecification<T> 
+    {
+        private ISpecification<T> _spec1, _spec2;
+
+        public AndSpecification(ISpecification<T> spec1, ISpecification<T> spec2)
+        {
+            _spec1 = spec1 ?? throw new Exception("Spec1 can't be null");
+            _spec2 = spec2 ?? throw new Exception("Spec2 can't be null");
+        }
+        public bool IsSatisfied(T t)
+        {
+            return _spec1.IsSatisfied(t) && _spec2.IsSatisfied(t);
+        }
+    }
 
     public class ProductFilterNew : IFilter<Product>
     {
@@ -73,7 +112,7 @@ namespace ConsoleApp1
             }
         }
     }
-
+    //---- 
 
     public class ProductFilter
     {
