@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using static System.Console;
@@ -54,24 +55,26 @@ namespace ConsoleApp1
                 "this is the 2nd",
                 "this is the 3rd"
             });
-            builder1.AddList(ListStyle.UnorderList, new List<string>()
-            {
-                "this is the 4",
-                "this is the 5",
-                "this is the 6"
-            });
-            builder1.AddList(ListStyle.OrderListWithAlphaUpper, new List<string>()
-            {
-                "this is the 4",
-                "this is the 5",
-                "this is the 6"
-            });
-            builder1.AddList(ListStyle.OrderListWithRomanLower, new List<string>()
-            {
-                "this is the 4",
-                "this is the 5",
-                "this is the 6"
-            });
+            builder1.AddSelfClosingTag("br");
+
+            //builder1.AddList(ListStyle.UnorderList, new List<string>()
+            //{
+            //    "this is the 4",
+            //    "this is the 5",
+            //    "this is the 6"
+            //});
+            //builder1.AddList(ListStyle.OrderListWithAlphaUpper, new List<string>()
+            //{
+            //    "this is the 4",
+            //    "this is the 5",
+            //    "this is the 6"
+            //});
+            //builder1.AddList(ListStyle.OrderListWithRomanLower, new List<string>()
+            //{
+            //    "this is the 4",
+            //    "this is the 5",
+            //    "this is the 6"
+            //});
             Console.WriteLine(builder1.ToString());
             Console.Read();
         }
@@ -153,6 +156,14 @@ namespace ConsoleApp1
             return this;
         }
 
+        public HtmlBuilder AddSelfClosingTag(string name)
+        {
+            var e = new HtmlElement(name, "");
+            e.IsSelfClosing = true;
+            root.Elements.Add(e);
+            return this;
+        }
+
         public override string ToString()
         {
             return root.ToString();
@@ -172,6 +183,9 @@ namespace ConsoleApp1
     {
         public string Name, Text, styling;
         public List<HtmlElement> Elements = new List<HtmlElement>();
+
+        [DefaultValue(false)]
+        public bool IsSelfClosing; 
         private const int indentSize = 2;
 
         public HtmlElement()
@@ -188,11 +202,14 @@ namespace ConsoleApp1
         {
             var sb = new StringBuilder();
             var i = new string(' ', indentSize * indent);
-            if (string.IsNullOrEmpty(styling))
+            if (IsSelfClosing)
             {
-                sb.Append($"{i}<{Name}>\n");
+                sb.Append($"{i}<{Name} />\n");
+                return sb.ToString();
             }
-            else sb.Append($"{i}<{Name} {styling}>\n");
+            
+            
+            sb.Append(string.IsNullOrEmpty(styling) ? $"{i}<{Name}>\n" : $"{i}<{Name} {styling}>\n");
 
             if (!string.IsNullOrWhiteSpace(Text))
             {
