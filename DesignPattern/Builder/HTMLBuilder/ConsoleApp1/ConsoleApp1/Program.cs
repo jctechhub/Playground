@@ -37,7 +37,11 @@ namespace ConsoleApp1
             builder.AddChild("li", "world");
             WriteLine(builder.ToString());
 
-           
+            // fluent builder
+            sb.Clear();
+            builder.Clear(); // disengage builder from the object it's building, then...
+            builder.AddChildFluent("li", "hello").AddChildFluent("li", "world");
+            WriteLine(builder);
 
             Console.Read();        
         }
