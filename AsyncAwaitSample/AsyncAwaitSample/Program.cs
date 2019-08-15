@@ -25,11 +25,21 @@ namespace AsyncAwaitSample
             var someTask2 = DoSomethingAsync2();
             await Task.WhenAll(someTask1, someTask2);
             DoSynchronousWorkAfterAwait();
-
-
-
-
             Console.ReadLine();
+            
+            
+            //Calling async method, and block, in sync operation: 
+            //var siebelLics = await DoSomethingAsync1();
+            //var siebelLics = AsyncHelper.RunSync(() =>  DoSomethingAsync1()));
+
+            //var task =  DoSomethingAsync1();
+            //task.RunSynchronously();
+            //var siebelLics = task.Result;
+
+            //var t = Task.Run(() =>  DoSomethingAsync1());
+            //t.Wait();
+            //var siebelLics = t.Result;
+
         }
 
         public static void DoSynchronousWork()
