@@ -9,6 +9,7 @@ using SampleUplift.Models;
 
 namespace SampleUplift.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
