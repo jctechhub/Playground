@@ -1,6 +1,6 @@
 using System;
 
-namespace SampleUplift.Models
+namespace Uplift.Models
 {
     public class ErrorViewModel
     {
