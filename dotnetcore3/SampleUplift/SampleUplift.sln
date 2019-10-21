@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUplift", "SampleUplift\SampleUplift.csproj", "{6F3B0BC1-E4CC-41C5-8171-93039C9C609F}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SampleUplift.DataAccess", "SampleUplift.DataAccess\SampleUplift.DataAccess.fsproj", "{6CEE8AC8-3113-4613-87AD-86769DDED37A}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SampleUplift.Models", "SampleUplift.Models\SampleUplift.Models.fsproj", "{9925C05A-0365-4DF8-A7D0-596D7EAB63FE}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SampleUplift.Utilities", "SampleUplift.Utilities\SampleUplift.Utilities.fsproj", "{C6B40914-0B11-4217-84CC-4A31FF1F591F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleUplift", "SampleUplift\SampleUplift.csproj", "{6F3B0BC1-E4CC-41C5-8171-93039C9C609F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +15,6 @@ Global
 		{6F3B0BC1-E4CC-41C5-8171-93039C9C609F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F3B0BC1-E4CC-41C5-8171-93039C9C609F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F3B0BC1-E4CC-41C5-8171-93039C9C609F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CEE8AC8-3113-4613-87AD-86769DDED37A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CEE8AC8-3113-4613-87AD-86769DDED37A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CEE8AC8-3113-4613-87AD-86769DDED37A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CEE8AC8-3113-4613-87AD-86769DDED37A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9925C05A-0365-4DF8-A7D0-596D7EAB63FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9925C05A-0365-4DF8-A7D0-596D7EAB63FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9925C05A-0365-4DF8-A7D0-596D7EAB63FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9925C05A-0365-4DF8-A7D0-596D7EAB63FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6B40914-0B11-4217-84CC-4A31FF1F591F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6B40914-0B11-4217-84CC-4A31FF1F591F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6B40914-0B11-4217-84CC-4A31FF1F591F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6B40914-0B11-4217-84CC-4A31FF1F591F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
