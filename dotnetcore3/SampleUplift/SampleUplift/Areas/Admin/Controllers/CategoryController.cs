@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Uplift.DataAccess.Data.Repository.IRepository;
+using Uplift.Models;
 
 namespace SampleUplift.Areas.Admin.Controllers
 {
@@ -20,6 +21,20 @@ namespace SampleUplift.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Upsert(int? id)
+        {
+            var category = new Category();
+            if (id == null) return View(category);
+
+            category = _unitOfWork.Category.Get(id.GetValueOrDefault());
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
         }
 
 
