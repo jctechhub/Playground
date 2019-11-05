@@ -80,6 +80,7 @@ namespace SampleUplift.Areas.Admin.Controllers
             return Json(new { success = true, message = "Delete successful." });
         }
 
-#endregion
+
+        #endregion
     }
 }
