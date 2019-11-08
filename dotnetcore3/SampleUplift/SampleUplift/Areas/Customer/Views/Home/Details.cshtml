@@ -1,5 +1,5 @@
 ﻿@model Uplift.Models.Service
-@*@using Uplift.Utility*@
+@using Uplift.Utility
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @using SampleUplift.Extensions
@@ -47,15 +47,15 @@
                 <div class="col-12 col-md-6 pb-1">
                     @{
                         var AddToCartEnabled = true;
-
-                        //if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
-                        //{
-                        //    var sessionList = HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
-                        //    if (sessionList.Contains(Model.Id))
-                        //    {
-                        //        AddToCartEnabled = false;
-                        //    }
-                        //}
+                        ///NOTE: checking if session has cart details. 
+                        if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
+                        {
+                            var sessionList = HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
+                            if (sessionList.Contains(Model.Id))
+                            {
+                                AddToCartEnabled = false;
+                            }
+                        }
                     }
 
                     @if (AddToCartEnabled)

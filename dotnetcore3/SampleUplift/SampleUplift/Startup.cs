@@ -41,6 +41,13 @@ namespace SampleUplift
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            //NOTE: Setups the sessions. 
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
@@ -61,7 +68,7 @@ namespace SampleUplift
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();  //NOTE: Use  the session. 
             app.UseRouting();
 
             app.UseAuthentication();
