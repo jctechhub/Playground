@@ -11,6 +11,9 @@ namespace Uplift.DataAccess.Data.Repository
         public ICategoryRepository Category { get; private set; }
         public IFrequencyRepository Frequency { get; private set; }
         public IServiceRepository Service { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+        public IOrderDetailsRepository OrderDetails { get; private set; }
+        public IUserRepository User { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext db)
