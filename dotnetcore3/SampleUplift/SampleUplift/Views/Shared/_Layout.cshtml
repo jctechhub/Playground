@@ -40,10 +40,11 @@
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Service" asp-action="Index">Service</a>
-                        @*//    @if (User.IsInRole(SD.Admin))
-                            {*@
+                            @if (User.IsInRole(SD.Admin))
+                            {
                                 <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
-                            @*}*@
+                            }
+                            <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
                         </div>
                     </li>
                     <li class="nav-item">
