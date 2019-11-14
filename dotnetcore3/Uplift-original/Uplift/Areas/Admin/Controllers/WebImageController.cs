@@ -48,12 +48,20 @@ namespace Uplift.Areas.Admin.Controllers
 
         }
 
+
+        /// <summary>
+        /// NOTE: This is different to the repo pattern approach, this is direct calling to the database. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="imageObj"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(int id, WebImages imageObj)
         {
             if (ModelState.IsValid)
             {
+                //NOTE: Getting the image from the upload files, and put it in database. 
                 var files = HttpContext.Request.Form.Files;
                 if(files.Count > 0)
                 {
