@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';  //NOTE: need to import '{Component}'
 import logo from './logo.svg';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
+class App extends Component {  //NOTE: Compoent declaration. 
+  state={
+    values: []
+  }
+  componentDidMount(){
+    this.setState({
+      values: [{id: 1, name: "value 101"}, {id:2, name: "value 102"}]
+    })
+  }
+  render() {
+    return (
+      <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <ul>
+          {this.state.values.map((value: any) => (  //NOTE: MUST declare value to :any type, otherwise compilation error. 
+            <li>{value.name}</li>
+          ))}
+        </ul>
       </header>
-    </div>
-  );
+    </div>   
+    );  
+  }
 }
-
 export default App;
