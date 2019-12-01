@@ -1,7 +1,7 @@
 import React, { Component } from 'react';  //NOTE: need to import '{Component}'
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import { Header, Icon, List } from 'semantic-ui-react'
 
 class App extends Component {  //NOTE: Compoent declaration. 
   state={
@@ -11,20 +11,22 @@ class App extends Component {  //NOTE: Compoent declaration.
     axios.get('http://localhost:5000/api/values').then(response => {
       this.setState({
         values: response.data
-      });
+      }); 
     });   
   }
   render() {
     return (
-      <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <ul>
-          {this.state.values.map((value: any) => (  //NOTE: MUST declare value to :any type, otherwise compilation error. 
-            <li key={value.id}>{value.name}</li>
+      <div>
+       <Header as='h2'>
+        <Icon name='users' />
+        <Header.Content>Reactivities</Header.Content>
+      </Header>
+      <List>
+        {this.state.values.map((value: any) => (  //NOTE: MUST declare value to :any type, otherwise compilation error. 
+            <List.Item key={value.id}> {value.name}</List.Item>
           ))}
-        </ul>
-      </header>
+      </List>      
+      
     </div>   
     );  
   }
