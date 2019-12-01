@@ -14,6 +14,7 @@ namespace Persistence
         
 
         public DbSet<Value> Values { get; set; }
+        public DbSet<Activity> Activities { get; set; }
 
 
     ///NOTE: this is for seeding data.!-- 
