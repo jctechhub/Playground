@@ -1,15 +1,18 @@
 import React, { Component } from 'react';  //NOTE: need to import '{Component}'
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {  //NOTE: Compoent declaration. 
   state={
     values: []
   }
   componentDidMount(){
-    this.setState({
-      values: [{id: 1, name: "value 101"}, {id:2, name: "value 102"}]
-    })
+    axios.get('http://localhost:5000/api/values').then(response => {
+      this.setState({
+        values: response.data
+      });
+    });   
   }
   render() {
     return (
@@ -18,7 +21,7 @@ class App extends Component {  //NOTE: Compoent declaration.
         <img src={logo} className="App-logo" alt="logo" />
         <ul>
           {this.state.values.map((value: any) => (  //NOTE: MUST declare value to :any type, otherwise compilation error. 
-            <li>{value.name}</li>
+            <li key={value.id}>{value.name}</li>
           ))}
         </ul>
       </header>
