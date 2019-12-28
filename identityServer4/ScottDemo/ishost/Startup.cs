@@ -25,7 +25,10 @@ namespace ishost
         {
             services.AddControllersWithViews();
             services.AddIdentityServer()
-                .AddTestUsers(TestUsers.Users);
+                .AddTestUsers(TestUsers.Users)
+                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApis());
 
         }
 
