@@ -12,6 +12,10 @@ namespace ishost
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                 new IdentityResources.Email(),
+                new IdentityResource{
+                    Name = "office", 
+                    UserClaims = { "office_number" }
+                }
             };
         }
 
@@ -25,15 +29,14 @@ namespace ishost
         {
             return new List<Client>
             {
-                // new Client
-                // {
-                //     ClientId = "m2m",
-                //     ClientName = "Machine to machine (client credentials)",
-                //     ClientSecrets = { new Secret("secret".Sha256()) },
-
-                //     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                //     AllowedScopes = { "api", "policyserver.runtime", "policyserver.management" },
-                // }
+                
+                new Client{
+                    ClientId="mvc", 
+                    ClientName = "MVC Demo", 
+                    AllowedGrantTypes = GrantTypes.Implicit, 
+                    RedirectUris = { "http://localhost:3000/signin-oidc"}, 
+                    AllowedScopes = { "openid", "email", "office"}
+                }
             };
         }
 

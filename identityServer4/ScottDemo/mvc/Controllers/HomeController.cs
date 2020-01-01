@@ -22,16 +22,16 @@ namespace mvc.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var url = "http://localhost:5000/api/values1";
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            if(response.IsSuccessStatusCode){
-                var json = await response.Content.ReadAsStringAsync();
-                ViewData["json"] = json;
-            }
-            else{
-                ViewData["json"] = "Error: " + response.StatusCode;
-            }
+            // var url = "http://localhost:5000/api/values";
+            // var client = new HttpClient();
+            // var response = await client.GetAsync(url);
+            // if(response.IsSuccessStatusCode){
+            //     var json = await response.Content.ReadAsStringAsync();
+            //     ViewData["json"] = json;
+            // }
+            // else{
+            //     ViewData["json"] = "Error: " + response.StatusCode;
+            // }
             return View();
         }
 

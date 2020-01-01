@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace mvc
 {
@@ -41,7 +45,13 @@ namespace mvc
             }
           //  app.UseHttpsRedirection();
             app.UseStaticFiles();
+app.UseCookieAuthentication(new CookieAuthenticationOptions{});
+            // app.UseCookieAuthentication(new CookieAuthenticationOptions{
+            //     AuthenticationSchemes = "Cookie",
+            // });
+            // app.UseOpenIDConnectAuthentication(new OpenIdConnectOptions{
 
+            // });
             app.UseRouting();
 
             app.UseAuthorization();
