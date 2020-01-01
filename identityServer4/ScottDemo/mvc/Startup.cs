@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+ 
 
 namespace mvc
 {
@@ -28,6 +29,23 @@ namespace mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = "Cookies";
+                    options.DefaultChallengeScheme = "oidc";
+                })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ClientId = "mvc";
+                    options.ClientSecret = "secret";
+                    options.ResponseType = "code";
+
+                    options.SaveTokens = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,14 +63,17 @@ namespace mvc
             }
           //  app.UseHttpsRedirection();
             app.UseStaticFiles();
-app.UseCookieAuthentication(new CookieAuthenticationOptions{});
-            // app.UseCookieAuthentication(new CookieAuthenticationOptions{
-            //     AuthenticationSchemes = "Cookie",
-            // });
-            // app.UseOpenIDConnectAuthentication(new OpenIdConnectOptions{
 
-            // });
-            app.UseRouting();
+
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationSchemes = "Cookie",
+            //});
+            //app.UseOpenIDConnectAuthentication(new OpenIdConnectOptions
+            //{
+
+            //});
+            //app.UseRouting();
 
             app.UseAuthorization();
 
