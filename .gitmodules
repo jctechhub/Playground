@@ -1,0 +1,3 @@
+[submodule "IdentityServer"]
+	path = IdentityServer
+	url = https://github.com/jctechhub/IdentityServer4.git
