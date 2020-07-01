@@ -9,7 +9,7 @@ namespace ArraySamples
         static void Main(string[] args)
         {
             //var test = Console.ReadLine();
-            //var test2 = Console.ReadLine();
+            //var test2 = Console.ReadLine(d);
             //Console.WriteLine("TEST IS " + test);
             //Console.WriteLine("TEST2 IS " + test2);
 
