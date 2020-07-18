@@ -66,16 +66,30 @@ namespace RSDemo1
             var request = new RestRequest("posts", Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.AddJsonBody(new Post(){Author = "Kenny", Id = 19, Title = "hello world" });
-            var response = client.Execute(request);
 
             //1. use jsonDeserializer 
+            var response = client.Execute(request);
             var des = new JsonDeserializer();
             var output = des.Deserialize<Dictionary<string, string>>(response);
             var result = output["Author"];
             Assert.That(result, Is.EqualTo("Kenny"), "Author is correct");
 
+            //2.  use strongType Execute.
+            var res = client.Execute<Post>(request);
+            Assert.That(res.Data.Author, Is.EqualTo("Kenny"), "Author is correct");
+        }
 
 
+        [Test]
+        public void PostWithAsync()
+        {
+            var client = new RestClient("http://localhost:3000/");
+            var request = new RestRequest("posts", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(new Post() { Author = "Kenny", Id = 19, Title = "hello world" });
+
+            var res = client.Execute<Post>(request);
+            Assert.That(res.Data.Author, Is.EqualTo("Kenny"), "Author is correct");
         }
 
 
